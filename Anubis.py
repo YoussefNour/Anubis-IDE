@@ -13,6 +13,12 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from pathlib import Path
+import MyPath
+
+
+
+
+
 
 def serial_ports():
     """ Lists serial port names
@@ -88,10 +94,12 @@ class text_widget(QWidget):
     def itUI(self):
         global text
         text = QTextEdit()
-        Python_Coloring.PythonHighlighter(text)
+        Python_Coloring.Highlighter(text)
         hbox = QHBoxLayout()
         hbox.addWidget(text)
         self.setLayout(hbox)
+
+
 
 
 
@@ -197,11 +205,15 @@ class Widget(QWidget):
 
     def on_clicked(self, index):
 
-        nn = self.sender().model().filePath(index)
-        nn = tuple([nn])
 
-        if nn[0]:
-            f = open(nn[0],'r')
+
+        MyPath.nn = self.sender().model().filePath(index)
+        MyPath.nn = tuple([MyPath.nn])
+
+
+
+        if MyPath.nn[0]:
+            f = open(MyPath.nn[0],'r')
             with f:
                 data = f.read()
                 text.setText(data)
@@ -358,7 +370,10 @@ class UI(QMainWindow):
 #
 
 if __name__ == '__main__':
+    MyPath.create()
     app = QApplication(sys.argv)
     ex = UI()
     # ex = Widget()
     sys.exit(app.exec_())
+
+
