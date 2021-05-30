@@ -7,7 +7,7 @@ import sys
 import glob
 import serial
 
-import Python_Coloring
+import code_Coloring
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
@@ -94,7 +94,7 @@ class text_widget(QWidget):
     def itUI(self):
         global text
         text = QTextEdit()
-        Python_Coloring.Highlighter(text)
+        code_Coloring.Highlighter(text)
         hbox = QHBoxLayout()
         hbox.addWidget(text)
         self.setLayout(hbox)
